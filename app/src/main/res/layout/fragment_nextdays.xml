@@ -1,0 +1,362 @@
+<LinearLayout
+    android:id="@+id/days_layout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!--h1-->
+    <LinearLayout
+        android:layout_marginTop="15dp"
+        android:id="@+id/horizontal1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/first"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <!--1-->
+
+            <TextView
+                android:id="@+id/date_tv1"
+                android:text="09.93.2012"
+                android:textSize="15sp"
+                android:textAlignment="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+
+            <ImageView
+                android:id="@+id/skyNow_iv1"
+                android:gravity="center"
+                android:src="@mipmap/ic_launcher"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+
+            <TextView
+                android:id="@+id/skyNow_tv1"
+                android:text="sunny/today"
+                android:layout_gravity="fill_horizontal"
+                android:textSize="15sp"
+                android:textAlignment="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/temp_tv1"
+                android:text="темп -28"
+                android:layout_marginTop="10dp"
+                android:textSize="15sp"
+                android:textAlignment="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+
+            <TextView
+                android:id="@+id/wind_tv1"
+                android:text="вітер   - 4"
+                android:layout_marginTop="10dp"
+                android:textSize="15sp"
+                android:textAlignment="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+
+            <TextView
+                android:id="@+id/clouds_tv1"
+                android:text="хмарність %   - 4"
+                android:layout_marginTop="10dp"
+                android:textSize="15sp"
+                android:textAlignment="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <!--h2-->
+    <LinearLayout
+        android:id="@+id/horizontal2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/second"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            >
+
+            <!--2-->
+            <TextView
+                android:id="@+id/date_tv2"
+                android:text="09.93.2012"
+                android:textSize="15sp"
+                android:textAlignment="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+
+            <ImageView
+                android:id="@+id/skyNow_iv2"
+                android:gravity="center"
+                android:src="@mipmap/ic_launcher"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+
+            <TextView
+                android:id="@+id/skyNow_tv2"
+                android:text="sunny/today"
+                android:layout_gravity="fill_horizontal"
+                android:textSize="15sp"
+                android:textAlignment="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/temp_tv2"
+                android:text="темп -28"
+                android:layout_marginTop="10dp"
+                android:textSize="15sp"
+                android:textAlignment="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+
+            <TextView
+                android:id="@+id/wind_tv2"
+                android:text="вітер   - 4"
+                android:layout_marginTop="10dp"
+                android:textSize="15sp"
+                android:textAlignment="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+
+            <TextView
+                android:id="@+id/clouds_tv2"
+                android:text="хмарність %   - 4"
+                android:layout_marginTop="10dp"
+                android:textSize="15sp"
+                android:textAlignment="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/third"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            >
+
+            <!--3-->
+            <TextView
+                android:id="@+id/date_tv3"
+                android:text="09.93.2012"
+                android:textSize="15sp"
+                android:textAlignment="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+
+            <ImageView
+                android:id="@+id/skyNow_iv3"
+                android:gravity="center"
+                android:src="@mipmap/ic_launcher"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+
+            <TextView
+                android:id="@+id/skyNow_tv3"
+                android:text="sunny/today"
+                android:layout_gravity="fill_horizontal"
+                android:textSize="15sp"
+                android:textAlignment="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/temp_tv3"
+                android:text="темп -28"
+                android:layout_marginTop="10dp"
+                android:textSize="15sp"
+                android:textAlignment="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+
+            <TextView
+                android:id="@+id/wind_t3"
+                android:text="вітер   - 4"
+                android:layout_marginTop="10dp"
+                android:textSize="15sp"
+                android:textAlignment="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+
+            <TextView
+                android:id="@+id/clouds_tv3"
+                android:text="хмарність %   - 4"
+                android:layout_marginTop="10dp"
+                android:textSize="15sp"
+                android:textAlignment="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
+
+
+<!--<LinearLayout-->
+<!--android:id="@+id/fourth"-->
+<!--android:orientation="vertical"-->
+<!--android:layout_weight="1"-->
+<!--android:layout_width="match_parent"-->
+<!--android:layout_height="wrap_content">-->
+
+<!--&lt;!&ndash;4&ndash;&gt;-->
+
+<!--<TextView-->
+    <!--android:id="@+id/date_tv4"-->
+    <!--android:text="09.93.2012"-->
+    <!--android:textSize="15sp"-->
+    <!--android:textAlignment="center"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--/>-->
+
+<!--<ImageView-->
+    <!--android:id="@+id/skyNow_iv4"-->
+    <!--android:gravity="center"-->
+    <!--android:src="@mipmap/ic_launcher"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--/>-->
+
+<!--<TextView-->
+    <!--android:id="@+id/skyNow_tv4"-->
+    <!--android:text="sunny/today"-->
+    <!--android:layout_gravity="fill_horizontal"-->
+    <!--android:textSize="15sp"-->
+    <!--android:textAlignment="center"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content" />-->
+
+<!--<TextView-->
+    <!--android:id="@+id/temp_tv4"-->
+    <!--android:text="темп -28"-->
+    <!--android:layout_marginTop="10dp"-->
+    <!--android:textSize="15sp"-->
+    <!--android:textAlignment="center"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--/>-->
+
+<!--<TextView-->
+    <!--android:id="@+id/sunrise_tv4"-->
+    <!--android:text="схід   - 07:12"-->
+    <!--android:layout_gravity="center"-->
+    <!--android:layout_marginTop="10dp"-->
+    <!--android:textSize="15sp"-->
+    <!--android:textAlignment="center"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--/>-->
+
+<!--<TextView-->
+    <!--android:id="@+id/sunset_tv4"-->
+    <!--android:text="захід  - 22:12"-->
+    <!--android:layout_marginTop="10dp"-->
+    <!--android:textSize="15sp"-->
+    <!--android:textAlignment="center"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--/>-->
+<!--</LinearLayout>-->
+
+<!--<LinearLayout-->
+<!--android:id="@+id/fifth"-->
+<!--android:orientation="vertical"-->
+<!--android:layout_width="match_parent"-->
+<!--android:layout_height="wrap_content"-->
+<!--android:layout_weight="1"-->
+    <!--&gt;-->
+
+<!--&lt;!&ndash;5&ndash;&gt;-->
+
+<!--<TextView-->
+    <!--android:id="@+id/date_tv"-->
+    <!--android:text="09.93.2012"-->
+    <!--android:textSize="15sp"-->
+    <!--android:textAlignment="center"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--/>-->
+
+<!--<ImageView-->
+    <!--android:id="@+id/skyNow_iv5"-->
+    <!--android:gravity="center"-->
+    <!--android:src="@mipmap/ic_launcher"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--/>-->
+
+<!--<TextView-->
+    <!--android:id="@+id/skyNow_tv5"-->
+    <!--android:text="sunny/today"-->
+    <!--android:layout_gravity="fill_horizontal"-->
+    <!--android:textSize="15sp"-->
+    <!--android:textAlignment="center"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content" />-->
+
+<!--<TextView-->
+    <!--android:id="@+id/temp_tv5"-->
+    <!--android:text="темп -28"-->
+    <!--android:layout_marginTop="10dp"-->
+    <!--android:textSize="15sp"-->
+    <!--android:textAlignment="center"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--/>-->
+
+<!--<TextView-->
+    <!--android:id="@+id/sunrise_tv5"-->
+    <!--android:text="схід   - 07:12"-->
+    <!--android:layout_gravity="center"-->
+    <!--android:layout_marginTop="10dp"-->
+    <!--android:textSize="15sp"-->
+    <!--android:textAlignment="center"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--/>-->
+
+<!--<TextView-->
+    <!--android:id="@+id/sunset_tv5"-->
+    <!--android:text="захід   - 22:12"-->
+    <!--android:layout_marginTop="10dp"-->
+    <!--android:textSize="15sp"-->
+    <!--android:textAlignment="center"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--/>-->
+<!--</LinearLayout>-->
