@@ -8,7 +8,7 @@
 
     <TextView
         android:id="@+id/date_tv"
-        android:text="09.93.2012"
+        android:text="day"
         android:layout_marginTop="10dp"
         android:textSize="15sp"
         android:textAlignment="center"
@@ -26,7 +26,7 @@
 
     <TextView
         android:id="@+id/skyNow_tv"
-        android:text="sunny/today"
+        android:text="sky"
         android:layout_marginTop="10dp"
         android:textSize="15sp"
         android:textAlignment="center"
@@ -36,7 +36,7 @@
 
     <TextView
         android:id="@+id/temp_tv"
-        android:text="темп -28"
+        android:text="temp"
         android:layout_marginTop="10dp"
         android:textSize="15sp"
         android:textAlignment="center"
@@ -46,7 +46,7 @@
 
     <TextView
         android:id="@+id/pressure_tv"
-        android:text="тиск   - 1012"
+        android:text="pressure"
         android:layout_marginTop="10dp"
         android:textSize="15sp"
         android:textAlignment="center"
@@ -56,7 +56,7 @@
 
     <TextView
         android:id="@+id/humidity_tv"
-        android:text="вологість   - 73"
+        android:text="humidity"
         android:layout_marginTop="10dp"
         android:textSize="15sp"
         android:textAlignment="center"
@@ -66,7 +66,7 @@
 
     <TextView
         android:id="@+id/wind_tv"
-        android:text="вітер   - 4"
+        android:text="wind"
         android:layout_marginTop="10dp"
         android:textSize="15sp"
         android:textAlignment="center"
@@ -76,7 +76,7 @@
 
     <TextView
         android:id="@+id/clouds_tv"
-        android:text="хмарність %   - 4"
+        android:text="clouds"
         android:layout_marginTop="10dp"
         android:textSize="15sp"
         android:textAlignment="center"
@@ -86,7 +86,7 @@
 
     <TextView
         android:id="@+id/sunrise_tv"
-        android:text="схід   - 07:12"
+        android:text="sunrise"
         android:layout_marginTop="10dp"
         android:textSize="15sp"
         android:textAlignment="center"
@@ -95,7 +95,7 @@
         />
     <TextView
         android:id="@+id/sunset_tv"
-        android:text="захід   - 22:12"
+        android:text="sunset"
         android:layout_marginTop="10dp"
         android:textSize="15sp"
         android:textAlignment="center"

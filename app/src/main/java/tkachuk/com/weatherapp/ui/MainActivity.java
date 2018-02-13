@@ -8,13 +8,10 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.app.FragmentStatePagerAdapter;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -30,7 +27,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import tkachuk.com.weatherapp.R;
 import tkachuk.com.weatherapp.model.Day;
@@ -78,13 +74,11 @@ public class MainActivity extends FragmentActivity implements IMainView,
         mActionBarDrawerToggle.syncState();
 
         //viewPager
-        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
-        viewPager.setAdapter(viewPagerAdapter);
+        adapter = new ViewPagerAdapter(getSupportFragmentManager());
+        viewPager.setAdapter(adapter);
         viewPager.setCurrentItem(0);
 
         tabLayout.setupWithViewPager(viewPager);
-
-        //editText.setFocusable(false);
 
         loadData();
     }
@@ -138,14 +132,13 @@ public class MainActivity extends FragmentActivity implements IMainView,
             return editText.getText().toString();
         }
         else{
-            return textView.getText().toString();
+            return mainPresenter.getLoadedCity();
         }
     }
 
     private void loadData(){
         mainPresenter.loadWeather(getCity());
-
-        timeOfLastUpdate.setText("last update: "+DateManager.getCurrentDateTime());
+        editText.clearFocus();
     }
 
     private void hideKeyboard(){
@@ -156,14 +149,24 @@ public class MainActivity extends FragmentActivity implements IMainView,
                 InputMethodManager.HIDE_NOT_ALWAYS);
     }
 
-
     public void incorrectCity(){
         Toast.makeText(this, "Error, incorrect city", Toast.LENGTH_SHORT).show();
     }
 
     @Override
+    public void setLastUpdateToSP() {
+        timeOfLastUpdate.setText("last update: "+DateManager.getCurrentDateTime());
+        mainPresenter.setLastUpdate(timeOfLastUpdate.getText().toString());
+    }
+
+    public void setLastUpdateToTV(String l) {
+        timeOfLastUpdate.setText(l);
+    }
+
+    @Override
     public void setToday(Day day) {
         Fragment fragment;
+        Log.i("settoday", day.getWind().getSpeed().toString());
         if((fragment=getFragment(0))!=null) ((TodayFragment)fragment).setData(day);
     }
 
@@ -216,6 +219,10 @@ public class MainActivity extends FragmentActivity implements IMainView,
 
     @Override
     public void showNotInternetConnection() {Toast.makeText(this, "Not internet connection", Toast.LENGTH_SHORT).show();}
+
+    @Override
+    public void showNotInternetConnectionIsCache() {Toast.makeText(this, "Not internet connection. " +
+            "Pull down to load cashe", Toast.LENGTH_LONG).show();}
 
 
 

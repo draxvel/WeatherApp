@@ -6,9 +6,15 @@ public interface IMainPresenter {
 
     void saveDayResponse(final String response);
 
-    void loadDayResponse();
+    boolean loadDayResponse();
 
     void saveNextDaysResponse(final String response);
 
-    void loadNextDaysResponse();
+    boolean loadNextDaysResponse();
+
+    String getLoadedCity();
+
+    void setLastUpdate(final String l);
+
+    String getLastUpdate();
 }

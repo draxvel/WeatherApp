@@ -9,7 +9,6 @@ import android.util.Log;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
-import java.util.Timer;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -62,6 +61,7 @@ public class MainPresenter implements IMainPresenter{
                         view.setToday(day);
                         view.setCity(day.getCity());
                         saveDayResponse(responseBodyT);
+                        view.setLastUpdateToSP();
                     }
                     else
                     {
@@ -93,6 +93,7 @@ public class MainPresenter implements IMainPresenter{
 
                         view.setNextDays(dayList);
                         saveNextDaysResponse(responseBodyTM);
+                        view.setLastUpdateToSP();
                     }
                     else
                     {
@@ -116,10 +117,11 @@ public class MainPresenter implements IMainPresenter{
 
 
     private void notInternetAccess(){
-        loadDayResponse();
-        loadNextDaysResponse();
-
-        view.showNotInternetConnection();
+        if(loadDayResponse() &&  loadNextDaysResponse()){
+            view.showNotInternetConnectionIsCache();
+            view.setLastUpdateToTV(getLastUpdate());
+        }
+        else view.showNotInternetConnection();
         Log.i("eee","notInternetisToday");
     }
 
@@ -133,7 +135,7 @@ public class MainPresenter implements IMainPresenter{
     }
 
     @Override
-    public void loadDayResponse() {
+    public boolean loadDayResponse() {
         sharedPref = activity.getPreferences(Context.MODE_PRIVATE);
         String s = sharedPref.getString("today", "");
         if(!TextUtils.isEmpty(s)) {
@@ -142,7 +144,9 @@ public class MainPresenter implements IMainPresenter{
             Day day = (Day) JSONParser.getFromJSONtoObject(s, type);
             view.setToday(day);
             view.setCity(day.getCity());
+            return true;
         }
+        else return false;
     }
 
     @Override
@@ -150,11 +154,11 @@ public class MainPresenter implements IMainPresenter{
         sharedPref = activity.getPreferences(Context.MODE_PRIVATE);
         editor = sharedPref.edit();
         editor.putString("nextdays", response);
-        editor.commit();
+        editor.apply();
     }
 
     @Override
-    public void loadNextDaysResponse() {
+    public boolean loadNextDaysResponse() {
         sharedPref = activity.getPreferences(Context.MODE_PRIVATE);
         String s = sharedPref.getString("nextdays", "");
         if(!TextUtils.isEmpty(s)){
@@ -162,7 +166,38 @@ public class MainPresenter implements IMainPresenter{
             Type type = new TypeToken<DayList>(){}.getType();
             DayList dayList = (DayList) JSONParser.getFromJSONtoObject(s, type);
             view.setNextDays(dayList);
+            return true;
         }
+        return false;
     }
+
+    @Override
+    public String getLoadedCity() {
+        sharedPref = activity.getPreferences(Context.MODE_PRIVATE);
+        String s = sharedPref.getString("today", "");
+        if(!TextUtils.isEmpty(s)) {
+            Log.i("loadDayResponse", s);
+            Type type = new TypeToken<Day>() {}.getType();
+            Day day = (Day) JSONParser.getFromJSONtoObject(s, type);
+            return day.getCity();
+        }
+        else return "";
+    }
+
+    @Override
+    public void setLastUpdate(String l) {
+        sharedPref = activity.getPreferences(Context.MODE_PRIVATE);
+        editor = sharedPref.edit();
+        editor.putString("lastupdate", l);
+        editor.apply();
+    }
+
+    @Override
+    public String getLastUpdate() {
+        sharedPref = activity.getPreferences(Context.MODE_PRIVATE);
+        String s = sharedPref.getString("lastupdate", "");
+        return s;
+    }
+
 
 }

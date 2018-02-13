@@ -24,7 +24,7 @@
 
             <TextView
                 android:id="@+id/date_tv1"
-                android:text="09.93.2012"
+                android:text="day"
                 android:textSize="15sp"
                 android:textAlignment="center"
                 android:layout_width="match_parent"
@@ -41,7 +41,7 @@
 
             <TextView
                 android:id="@+id/skyNow_tv1"
-                android:text="sunny/today"
+                android:text="sky"
                 android:layout_gravity="fill_horizontal"
                 android:textSize="15sp"
                 android:textAlignment="center"
@@ -50,7 +50,7 @@
 
             <TextView
                 android:id="@+id/temp_tv1"
-                android:text="темп -28"
+                android:text="temp"
                 android:layout_marginTop="10dp"
                 android:textSize="15sp"
                 android:textAlignment="center"
@@ -60,7 +60,7 @@
 
             <TextView
                 android:id="@+id/wind_tv1"
-                android:text="вітер   - 4"
+                android:text="wind"
                 android:layout_marginTop="10dp"
                 android:textSize="15sp"
                 android:textAlignment="center"
@@ -70,7 +70,7 @@
 
             <TextView
                 android:id="@+id/clouds_tv1"
-                android:text="хмарність %   - 4"
+                android:text="clouds"
                 android:layout_marginTop="10dp"
                 android:textSize="15sp"
                 android:textAlignment="center"
@@ -100,7 +100,7 @@
             <!--2-->
             <TextView
                 android:id="@+id/date_tv2"
-                android:text="09.93.2012"
+                android:text="day"
                 android:textSize="15sp"
                 android:textAlignment="center"
                 android:layout_width="match_parent"
@@ -117,7 +117,7 @@
 
             <TextView
                 android:id="@+id/skyNow_tv2"
-                android:text="sunny/today"
+                android:text="sky"
                 android:layout_gravity="fill_horizontal"
                 android:textSize="15sp"
                 android:textAlignment="center"
@@ -126,7 +126,7 @@
 
             <TextView
                 android:id="@+id/temp_tv2"
-                android:text="темп -28"
+                android:text="temp"
                 android:layout_marginTop="10dp"
                 android:textSize="15sp"
                 android:textAlignment="center"
@@ -136,7 +136,7 @@
 
             <TextView
                 android:id="@+id/wind_tv2"
-                android:text="вітер   - 4"
+                android:text="wind"
                 android:layout_marginTop="10dp"
                 android:textSize="15sp"
                 android:textAlignment="center"
@@ -146,7 +146,7 @@
 
             <TextView
                 android:id="@+id/clouds_tv2"
-                android:text="хмарність %   - 4"
+                android:text="clouds"
                 android:layout_marginTop="10dp"
                 android:textSize="15sp"
                 android:textAlignment="center"
@@ -167,7 +167,7 @@
             <!--3-->
             <TextView
                 android:id="@+id/date_tv3"
-                android:text="09.93.2012"
+                android:text="day"
                 android:textSize="15sp"
                 android:textAlignment="center"
                 android:layout_width="match_parent"
@@ -184,7 +184,7 @@
 
             <TextView
                 android:id="@+id/skyNow_tv3"
-                android:text="sunny/today"
+                android:text="sky"
                 android:layout_gravity="fill_horizontal"
                 android:textSize="15sp"
                 android:textAlignment="center"
@@ -193,7 +193,7 @@
 
             <TextView
                 android:id="@+id/temp_tv3"
-                android:text="темп -28"
+                android:text="temp"
                 android:layout_marginTop="10dp"
                 android:textSize="15sp"
                 android:textAlignment="center"
@@ -203,7 +203,7 @@
 
             <TextView
                 android:id="@+id/wind_tv3"
-                android:text="вітер   - 4"
+                android:text="wind"
                 android:layout_marginTop="10dp"
                 android:textSize="15sp"
                 android:textAlignment="center"
@@ -213,7 +213,7 @@
 
             <TextView
                 android:id="@+id/clouds_tv3"
-                android:text="хмарність %   - 4"
+                android:text="clouds"
                 android:layout_marginTop="10dp"
                 android:textSize="15sp"
                 android:textAlignment="center"

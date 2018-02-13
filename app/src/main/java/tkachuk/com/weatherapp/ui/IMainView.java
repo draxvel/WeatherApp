@@ -19,5 +19,11 @@ public interface IMainView {
 
     void showNotInternetConnection();
 
+    public void showNotInternetConnectionIsCache();
+
     void incorrectCity();
+
+    void setLastUpdateToSP();
+
+    void setLastUpdateToTV(String l);
 }
