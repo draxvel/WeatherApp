@@ -22,6 +22,8 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -57,6 +59,9 @@ public class MainActivity extends FragmentActivity implements IMainView,
     private TextView textView;
     private TextView timeOfLastUpdate;
 
+    private AutoCompleteTextView actv;
+
+
     private ArrayList<String> fragmentTags=new ArrayList<String>();
 
     @Override
@@ -80,6 +85,13 @@ public class MainActivity extends FragmentActivity implements IMainView,
 
         tabLayout.setupWithViewPager(viewPager);
 
+        String[] cyties = {"Lviv", "Kyiv", "Moscow"};
+
+        //autocomplete
+        ArrayAdapter<String> adapter = new ArrayAdapter<>
+                (this,R.layout.auto_complete_textview, cyties);
+        actv.setAdapter(adapter);
+
         loadData();
     }
 
@@ -97,6 +109,8 @@ public class MainActivity extends FragmentActivity implements IMainView,
         editText = (EditText) findViewById(R.id.search_ed);
         textView = (TextView) findViewById(R.id.cityName_tv);
         timeOfLastUpdate = findViewById(R.id.lastUpdate);
+
+        actv =  findViewById(R.id.search_ed);
     }
 
     private void initListeners() {

@@ -25,7 +25,7 @@
         android:layout_height="match_parent"
         tools:context=".MainActivity">
 
-        <EditText
+        <AutoCompleteTextView
             android:id="@+id/search_ed"
             android:hint="enter city..."
             android:layout_width="match_parent"
@@ -35,8 +35,7 @@
             android:inputType="text"
             android:maxLines="1"
             android:imeOptions="actionSearch">
-
-        </EditText>
+        </AutoCompleteTextView>
 
         <TextView
             android:id="@+id/cityName_tv"
