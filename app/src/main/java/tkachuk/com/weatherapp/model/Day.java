@@ -127,9 +127,7 @@ public class Day {
         }
     }
 
-        @SerializedName("sys")
-        @Expose
-        private Sys sys;
+
         @SerializedName("weather")
         @Expose
         private List<Weather> weather = null;
@@ -150,6 +148,10 @@ public class Day {
         @SerializedName("name")
         @Expose
         private String city;
+
+        @SerializedName("sys")
+        @Expose
+        private Sys sys;
 
         public Sys getSys() {
             return sys;
@@ -207,12 +209,4 @@ public class Day {
         public void setName(String city) {
             this.city = city;
         }
-
-
-        public Calendar getDate() {
-        Calendar date = Calendar.getInstance();
-        date.setTimeInMillis(dt * 1000);
-        return date;
-        }
-
 }

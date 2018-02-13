@@ -1,7 +1,14 @@
 package tkachuk.com.weatherapp.ui;
 
 public interface IMainPresenter {
-    void getWeather(final String city);
 
-    void getForecast (final String city);
+    void loadWeather (String city);
+
+    void saveDayResponse(final String response);
+
+    void loadDayResponse();
+
+    void saveNextDaysResponse(final String response);
+
+    void loadNextDaysResponse();
 }

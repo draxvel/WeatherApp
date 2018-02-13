@@ -5,8 +5,11 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -18,10 +21,10 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,8 +38,9 @@ import tkachuk.com.weatherapp.model.DayList;
 import tkachuk.com.weatherapp.ui.fragment.NextDaysFragment;
 import tkachuk.com.weatherapp.ui.fragment.TodayFragment;
 import tkachuk.com.weatherapp.ui.fragment.TomorrowFragment;
+import tkachuk.com.weatherapp.util.DateManager;
 
-public class MainActivity extends AppCompatActivity implements IMainView,
+public class MainActivity extends FragmentActivity implements IMainView,
         NavigationView.OnNavigationItemSelectedListener {
 
     private TabLayout tabLayout;
@@ -55,6 +59,9 @@ public class MainActivity extends AppCompatActivity implements IMainView,
 
     private EditText editText;
     private TextView textView;
+    private TextView timeOfLastUpdate;
+
+    private ArrayList<String> fragmentTags=new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,10 +78,13 @@ public class MainActivity extends AppCompatActivity implements IMainView,
         mActionBarDrawerToggle.syncState();
 
         //viewPager
-        setupViewPager(viewPager);
+        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
+        viewPager.setAdapter(viewPagerAdapter);
+        viewPager.setCurrentItem(0);
+
         tabLayout.setupWithViewPager(viewPager);
 
-        textView.setFocusable(false);
+        //editText.setFocusable(false);
 
         loadData();
     }
@@ -84,12 +94,15 @@ public class MainActivity extends AppCompatActivity implements IMainView,
         mNavigationView = (NavigationView) findViewById(R.id.navigationView);
 
         swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swiperefresh);
+
         viewPager = (ViewPager) findViewById(R.id.viewpager);
+        viewPager.setOffscreenPageLimit(3);
 
         tabLayout = (TabLayout) findViewById(R.id.tabs);
 
         editText = (EditText) findViewById(R.id.search_ed);
         textView = (TextView) findViewById(R.id.cityName_tv);
+        timeOfLastUpdate = findViewById(R.id.lastUpdate);
     }
 
     private void initListeners() {
@@ -102,7 +115,6 @@ public class MainActivity extends AppCompatActivity implements IMainView,
                 if (i == EditorInfo.IME_ACTION_SEARCH) {
                     loadData();
                     hideKeyboard();
-                    textView.setText(editText.getText());
                     handled = true;
                 }
                 return handled;
@@ -118,25 +130,22 @@ public class MainActivity extends AppCompatActivity implements IMainView,
     }
 
     private void initPresenter() {
-        mainPresenter = new MainPresenter(getApplicationContext(), this);
+        mainPresenter = new MainPresenter(this, this);
     }
 
     private String getCity(){
-        if(!TextUtils.isEmpty(editText.getText()))
+        if(!TextUtils.isEmpty(editText.getText())){
             return editText.getText().toString();
+        }
         else{
             return textView.getText().toString();
         }
     }
 
     private void loadData(){
-        //today
-        if(viewPager.getCurrentItem() == 0){
-            mainPresenter.getWeather(getCity());
-        }
-        //other days
-        else
-            mainPresenter.getForecast (getCity());
+        mainPresenter.loadWeather(getCity());
+
+        timeOfLastUpdate.setText("last update: "+DateManager.getCurrentDateTime());
     }
 
     private void hideKeyboard(){
@@ -147,20 +156,30 @@ public class MainActivity extends AppCompatActivity implements IMainView,
                 InputMethodManager.HIDE_NOT_ALWAYS);
     }
 
+
     public void incorrectCity(){
         Toast.makeText(this, "Error, incorrect city", Toast.LENGTH_SHORT).show();
     }
 
-
     @Override
     public void setToday(Day day) {
-        Toast.makeText(this,"Set Today, city - "+day.getClouds(), Toast.LENGTH_SHORT).show();
+        Fragment fragment;
+        if((fragment=getFragment(0))!=null) ((TodayFragment)fragment).setData(day);
     }
 
     @Override
     public void setNextDays(DayList dayList) {
-        Toast.makeText(this,"set NextDays - "+dayList.getItems().get(1).getSys().getSunset(), Toast.LENGTH_SHORT).show();
+        Fragment fragment;
+        if((fragment=getFragment(1))!=null) ((TomorrowFragment)fragment).setData(dayList);
+        if((fragment=getFragment(2))!=null) ((NextDaysFragment)fragment).setData(dayList);
     }
+
+    @Override
+    public void setCity(String city) {
+        Log.i("fragment", city);
+        textView.setText(city);
+    }
+
 
     private void showProgressLoaderWithBackground (boolean visibility, String text) {
         if (text == null)
@@ -198,6 +217,11 @@ public class MainActivity extends AppCompatActivity implements IMainView,
     @Override
     public void showNotInternetConnection() {Toast.makeText(this, "Not internet connection", Toast.LENGTH_SHORT).show();}
 
+
+
+
+
+
     //NavigationDrawer
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -222,41 +246,64 @@ public class MainActivity extends AppCompatActivity implements IMainView,
         return super.onOptionsItemSelected(item);
     }
 
-    //View
-    private void setupViewPager(ViewPager viewPager) {
-        adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new TodayFragment(), "Today");
-        adapter.addFragment(new TomorrowFragment(), "Tomorrow");
-        adapter.addFragment(new NextDaysFragment(), "NextDays");
-        viewPager.setAdapter(adapter);
+
+
+
+
+    private Fragment getFragment(int pos) {
+        if(pos<fragmentTags.size()) {
+            return getSupportFragmentManager().findFragmentByTag(fragmentTags.get(pos));
+        }
+        return null;
     }
 
     class ViewPagerAdapter extends FragmentPagerAdapter {
-        private final List<Fragment> mFragmentList = new ArrayList<>();
-        private final List<String> mFragmentTitleList = new ArrayList<>();
 
-        public ViewPagerAdapter(FragmentManager manager) {
-            super(manager);
+        public ViewPagerAdapter(FragmentManager fm) {
+            super(fm);
+        }
+
+        @Override
+        public Object instantiateItem(ViewGroup container, int position) {
+            Fragment fragment = (Fragment) super.instantiateItem(container, position);
+            if(position<fragmentTags.size()) fragmentTags.set(position,fragment.getTag());
+            else fragmentTags.add(fragment.getTag());
+            return fragment;
         }
 
         @Override
         public Fragment getItem(int position) {
-            return mFragmentList.get(position);
+            Fragment fragment = null;
+            switch(position) {
+                case 0:
+                    fragment= Fragment.instantiate(MainActivity.this, TodayFragment.class.getName());
+                    break;
+                case 1:
+                    fragment= Fragment.instantiate(MainActivity.this, TomorrowFragment.class.getName());
+                    break;
+                case 2:
+                    fragment= Fragment.instantiate(MainActivity.this, NextDaysFragment.class.getName());
+                    break;
+            }
+            return fragment;
         }
 
         @Override
         public int getCount() {
-            return mFragmentList.size();
-        }
-
-        public void addFragment(Fragment fragment, String title) {
-            mFragmentList.add(fragment);
-            mFragmentTitleList.add(title);
+            return 3;
         }
 
         @Override
         public CharSequence getPageTitle(int position) {
-            return mFragmentTitleList.get(position);
+            switch(position) {
+                case 0:
+                    return "Today";
+                case 1:
+                    return "Tomorrow";
+                case 2:
+                    return "Next days";
+            }
+            return super.getPageTitle(position);
         }
     }
 }

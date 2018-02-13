@@ -7,9 +7,9 @@
     tools:context="tkachuk.com.weatherapp.ui.fragment.TodayFragment">
 
     <TextView
-        android:id="@+id/date_tv"
+        android:id="@+id/date_tvT"
         android:text="09.93.2012"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="20dp"
         android:textSize="15sp"
         android:textAlignment="center"
         android:layout_width="match_parent"
@@ -17,15 +17,15 @@
         />
 
     <ImageView
-        android:id="@+id/skyNow_iv"
+        android:id="@+id/skyNow_ivT"
         android:src="@mipmap/ic_launcher"
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="100dp"
         />
 
     <TextView
-        android:id="@+id/skyNow_tv"
+        android:id="@+id/skyNow_tvT"
         android:text="sunny/today"
         android:layout_marginTop="10dp"
         android:textSize="15sp"
@@ -35,7 +35,7 @@
         />
 
     <TextView
-        android:id="@+id/temp_tv"
+        android:id="@+id/temp_tvT"
         android:text="темп -28"
         android:layout_marginTop="10dp"
         android:textSize="15sp"
@@ -45,7 +45,7 @@
         />
 
     <TextView
-        android:id="@+id/pressure_tv"
+        android:id="@+id/pressure_tvT"
         android:text="тиск   - 1012"
         android:layout_marginTop="10dp"
         android:textSize="15sp"
@@ -55,7 +55,7 @@
         />
 
     <TextView
-        android:id="@+id/humidity_tv"
+        android:id="@+id/humidity_tvT"
         android:text="вологість   - 73"
         android:layout_marginTop="10dp"
         android:textSize="15sp"
@@ -65,7 +65,7 @@
         />
 
     <TextView
-        android:id="@+id/wind_tv"
+        android:id="@+id/wind_tvT"
         android:text="вітер   - 4"
         android:layout_marginTop="10dp"
         android:textSize="15sp"
@@ -75,7 +75,7 @@
         />
 
     <TextView
-        android:id="@+id/clouds_tv"
+        android:id="@+id/clouds_tvT"
         android:text="хмарність %   - 4"
         android:layout_marginTop="10dp"
         android:textSize="15sp"

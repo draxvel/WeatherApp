@@ -49,7 +49,7 @@
         />
 
         <TextView
-            android:id="@+id/lastUpdateTomorrow"
+            android:id="@+id/lastUpdate"
             android:text="lastupdate - 213 424 2424"
             android:textAlignment="center"
             android:layout_width="match_parent"

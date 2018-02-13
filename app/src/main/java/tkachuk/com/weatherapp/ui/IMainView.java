@@ -9,6 +9,8 @@ public interface IMainView {
 
     void setNextDays (DayList dayList);
 
+    void setCity(String city);
+
     void showProgress();
 
     void hideProgress();

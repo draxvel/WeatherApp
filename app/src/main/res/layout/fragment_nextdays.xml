@@ -36,7 +36,7 @@
                 android:gravity="center"
                 android:src="@mipmap/ic_launcher"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="70dp"
                 />
 
             <TextView
@@ -112,7 +112,7 @@
                 android:gravity="center"
                 android:src="@mipmap/ic_launcher"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="70dp"
                 />
 
             <TextView
@@ -179,7 +179,7 @@
                 android:gravity="center"
                 android:src="@mipmap/ic_launcher"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="70dp"
                 />
 
             <TextView
@@ -202,7 +202,7 @@
                 />
 
             <TextView
-                android:id="@+id/wind_t3"
+                android:id="@+id/wind_tv3"
                 android:text="вітер   - 4"
                 android:layout_marginTop="10dp"
                 android:textSize="15sp"
