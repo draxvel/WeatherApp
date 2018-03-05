@@ -52,8 +52,6 @@ public class MainPresenter implements IMainPresenter{
                     if(response.isSuccessful())
                     {
                         String responseBodyT = response.body().toString();
-                        Log.i("responseBody", responseBodyT);
-
 
                         Type type = new TypeToken<Day>(){}.getType();
                         Day day= (Day) JSONParser.getFromJSONtoObject(responseBodyT, type);
@@ -65,14 +63,12 @@ public class MainPresenter implements IMainPresenter{
                     }
                     else
                     {
-                        Log.i("responseBodyE", response.errorBody().toString());
                         view.incorrectCity();
                     }
                 }
 
                 @Override
                 public void onFailure(Call<JsonObject> call, Throwable t) {
-                    Log.i("onFailure", t.getMessage());
                     view.incorrectCity();
                 }
             });
@@ -86,7 +82,6 @@ public class MainPresenter implements IMainPresenter{
                     if(response.isSuccessful())
                     {
                         String responseBodyTM = response.body().toString();
-                        Log.i("responseBody", responseBodyTM);
 
                         Type type = new TypeToken<DayList>(){}.getType();
                         DayList dayList= (DayList) JSONParser.getFromJSONtoObject(responseBodyTM, type);
@@ -97,14 +92,12 @@ public class MainPresenter implements IMainPresenter{
                     }
                     else
                     {
-                        Log.i("responseBodyE", response.errorBody().toString());
                         view.incorrectCity();
                     }
                 }
 
                 @Override
                 public void onFailure(Call<JsonObject> call, Throwable t) {
-                    Log.i("onFailure", t.getMessage());
                 }
             });
 
@@ -122,7 +115,6 @@ public class MainPresenter implements IMainPresenter{
             view.setLastUpdateToTV(getLastUpdate());
         }
         else view.showNotInternetConnection();
-        Log.i("eee","notInternetisToday");
     }
 
     @Override
@@ -130,7 +122,6 @@ public class MainPresenter implements IMainPresenter{
         sharedPref = activity.getPreferences(Context.MODE_PRIVATE);
         editor = sharedPref.edit();
         editor.putString("today", response);
-        Log.i("eeesaveDayResponse", response);
         editor.apply();
     }
 
@@ -139,7 +130,6 @@ public class MainPresenter implements IMainPresenter{
         sharedPref = activity.getPreferences(Context.MODE_PRIVATE);
         String s = sharedPref.getString("today", "");
         if(!TextUtils.isEmpty(s)) {
-            Log.i("loadDayResponse", s);
             Type type = new TypeToken<Day>() {}.getType();
             Day day = (Day) JSONParser.getFromJSONtoObject(s, type);
             view.setToday(day);
@@ -162,7 +152,6 @@ public class MainPresenter implements IMainPresenter{
         sharedPref = activity.getPreferences(Context.MODE_PRIVATE);
         String s = sharedPref.getString("nextdays", "");
         if(!TextUtils.isEmpty(s)){
-            Log.i("loadNextDaysResponse", s);
             Type type = new TypeToken<DayList>(){}.getType();
             DayList dayList = (DayList) JSONParser.getFromJSONtoObject(s, type);
             view.setNextDays(dayList);
@@ -176,7 +165,6 @@ public class MainPresenter implements IMainPresenter{
         sharedPref = activity.getPreferences(Context.MODE_PRIVATE);
         String s = sharedPref.getString("today", "");
         if(!TextUtils.isEmpty(s)) {
-            Log.i("loadDayResponse", s);
             Type type = new TypeToken<Day>() {}.getType();
             Day day = (Day) JSONParser.getFromJSONtoObject(s, type);
             return day.getCity();
@@ -198,6 +186,4 @@ public class MainPresenter implements IMainPresenter{
         String s = sharedPref.getString("lastupdate", "");
         return s;
     }
-
-
 }

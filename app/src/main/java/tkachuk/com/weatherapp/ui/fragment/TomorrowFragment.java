@@ -34,7 +34,6 @@ public class TomorrowFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         root = inflater.inflate(R.layout.fragment_tommorow, container, false);
-        Log.i("fragment", "tomorrowOnCreateView");
         setRetainInstance(true);
         initView();
         return root;
@@ -54,8 +53,6 @@ public class TomorrowFragment extends Fragment {
 
     public void setData(DayList dayList){
         Day day = dayList.getItems().get(1);
-
-        Log.i("fragment", "tomorrowSetData");
 
         date_tv.setText(DateManager.getDayOfWeek(1));
 

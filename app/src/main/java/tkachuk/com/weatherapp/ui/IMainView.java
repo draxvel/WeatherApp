@@ -19,7 +19,7 @@ public interface IMainView {
 
     void showNotInternetConnection();
 
-    public void showNotInternetConnectionIsCache();
+    void showNotInternetConnectionIsCache();
 
     void incorrectCity();
 

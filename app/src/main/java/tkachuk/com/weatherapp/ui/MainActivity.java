@@ -29,6 +29,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import tkachuk.com.weatherapp.R;
 import tkachuk.com.weatherapp.model.Day;
@@ -38,8 +40,7 @@ import tkachuk.com.weatherapp.ui.fragment.TodayFragment;
 import tkachuk.com.weatherapp.ui.fragment.TomorrowFragment;
 import tkachuk.com.weatherapp.util.DateManager;
 
-public class MainActivity extends FragmentActivity implements IMainView,
-        NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends FragmentActivity implements IMainView {
 
     private TabLayout tabLayout;
     private ViewPager viewPager;
@@ -47,11 +48,6 @@ public class MainActivity extends FragmentActivity implements IMainView,
 
     //refresh
     SwipeRefreshLayout swipeRefreshLayout;
-
-    //navigationDrawer
-    private DrawerLayout mDrawerLayout;
-    private ActionBarDrawerToggle mActionBarDrawerToggle;
-    private NavigationView mNavigationView;
 
     private MainPresenter mainPresenter;
 
@@ -73,11 +69,6 @@ public class MainActivity extends FragmentActivity implements IMainView,
         initListeners();
         initPresenter();
 
-        //DrawerToggle
-        mActionBarDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close);
-        mDrawerLayout.addDrawerListener(mActionBarDrawerToggle);
-        mActionBarDrawerToggle.syncState();
-
         //viewPager
         adapter = new ViewPagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(adapter);
@@ -85,20 +76,19 @@ public class MainActivity extends FragmentActivity implements IMainView,
 
         tabLayout.setupWithViewPager(viewPager);
 
-        String[] cyties = {"Lviv", "Kyiv", "Moscow"};
+        String[] cities = getResources().getStringArray(R.array.cities);
+
+        List<String> cytiesList = Arrays.asList(cities);
 
         //autocomplete
         ArrayAdapter<String> adapter = new ArrayAdapter<>
-                (this,R.layout.auto_complete_textview, cyties);
+                (this,R.layout.auto_complete_textview, cytiesList);
         actv.setAdapter(adapter);
 
         loadData();
     }
 
     private void initView() {
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
-        mNavigationView = (NavigationView) findViewById(R.id.navigationView);
-
         swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swiperefresh);
 
         viewPager = (ViewPager) findViewById(R.id.viewpager);
@@ -114,7 +104,6 @@ public class MainActivity extends FragmentActivity implements IMainView,
     }
 
     private void initListeners() {
-        mNavigationView.setNavigationItemSelectedListener(this);
 
         editText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -180,7 +169,6 @@ public class MainActivity extends FragmentActivity implements IMainView,
     @Override
     public void setToday(Day day) {
         Fragment fragment;
-        Log.i("settoday", day.getWind().getSpeed().toString());
         if((fragment=getFragment(0))!=null) ((TodayFragment)fragment).setData(day);
     }
 
@@ -193,7 +181,6 @@ public class MainActivity extends FragmentActivity implements IMainView,
 
     @Override
     public void setCity(String city) {
-        Log.i("fragment", city);
         textView.setText(city);
     }
 
@@ -237,39 +224,6 @@ public class MainActivity extends FragmentActivity implements IMainView,
     @Override
     public void showNotInternetConnectionIsCache() {Toast.makeText(this, "Not internet connection. " +
             "Pull down to load cashe", Toast.LENGTH_LONG).show();}
-
-
-
-
-
-
-    //NavigationDrawer
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.nav_settings:
-                Toast.makeText(this, "Settings", Toast.LENGTH_SHORT).show();
-                break;
-
-            case R.id.nav_about:
-                Toast.makeText(this, "About", Toast.LENGTH_SHORT).show();
-                break;
-        }
-        mDrawerLayout.closeDrawers();
-        return false;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        //Add click to Home button
-        if(mActionBarDrawerToggle.onOptionsItemSelected(item))
-            return true;
-        return super.onOptionsItemSelected(item);
-    }
-
-
-
-
 
     private Fragment getFragment(int pos) {
         if(pos<fragmentTags.size()) {

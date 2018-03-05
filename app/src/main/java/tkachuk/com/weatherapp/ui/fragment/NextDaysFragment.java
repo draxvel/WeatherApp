@@ -54,8 +54,6 @@ public class NextDaysFragment extends Fragment {
         root = inflater.inflate(R.layout.fragment_nextdays, container, false);
 
         initView();
-
-        Log.i("fragment", "nextdays");
         return root;
     }
 
@@ -83,8 +81,6 @@ public class NextDaysFragment extends Fragment {
     }
 
     public void setData(DayList dayList){
-
-        Log.i("fragment", "nextDaysSetData");
 
         Day day1 = dayList.getItems().get(2);
         Day day2 = dayList.getItems().get(3);

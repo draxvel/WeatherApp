@@ -36,7 +36,6 @@ public class TodayFragment extends Fragment{
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         root = inflater.inflate(R.layout.fragment_today, container, false);
-        Log.i("fragment", "todayOnCreateView");
         setRetainInstance(true);
         initView();
         return root;
@@ -57,8 +56,6 @@ public class TodayFragment extends Fragment{
 
 
     public void setData(Day day){
-        Log.i("fragment", "todaySetData");
-
         date_tv.setText(DateManager.getDayOfWeek(0));
 
         Picasso.with(getActivity().getApplicationContext())
