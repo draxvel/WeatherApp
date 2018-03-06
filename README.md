@@ -4,12 +4,21 @@ A simple, opensource weather app for Android. It gathers data from [OpenWeatherM
 
 ## Features
 * Simple and intuitive design
-* Current weather
-* Detailed 5 day forecast
+* Current weather 
+* Detailed 5 day forecast 
 * Works with any city in the world
 * Offline functionality (caching data)
 
-## Used libraries:
+## Screenshots
+Current Weather | Tomorrow Forecast | Next Days Forecast
+-------------|----------------- | -------------
+![alt text](screenshots/currentweather.jpg "Current Weather")  | ![alt text](screenshots/forecast-tomorrow.jpg "Tomorrow Forecast") | ![alt text](screenshots/forecast-nextdays.jpg "Next Days Forecast")
+
+
+Autocomplete Search | Cached Data
+-------------|-------------
+![alt text](screenshots/autocompleteview.jpg "Autocomplete Search")  | ![alt text](screenshots/cashedData.jpg "Cached Data") 
+## Used libraries
 * com.squareup.retrofit2:retrofit:2.3.0 - for work with Weather API.
 * com.google.code.gson:gson:2.7 - working with JSON object.
 * com.squareup.retrofit2:converter-gson:2.0.2 - convert JSON data.
