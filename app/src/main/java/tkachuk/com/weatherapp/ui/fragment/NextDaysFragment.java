@@ -86,7 +86,7 @@ public class NextDaysFragment extends Fragment {
         Day day3 = dayList.getItems().get(4);
 
         //1
-        date_tv1.setText(DateManager.getDayOfWeek(2));
+        date_tv1.setText(DateManager.getDayOfWeek(day1.getDt(),2));
 
         Picasso.with(getActivity().getApplicationContext())
                 .load(day1.getWeather().get(0).getIconUrl())
@@ -101,7 +101,7 @@ public class NextDaysFragment extends Fragment {
         
         
         //2
-        date_tv2.setText(DateManager.getDayOfWeek(3));
+        date_tv2.setText(DateManager.getDayOfWeek(day2.getDt(),3));
 
         Picasso.with(getActivity().getApplicationContext())
                 .load(day2.getWeather().get(0).getIconUrl())
@@ -116,7 +116,7 @@ public class NextDaysFragment extends Fragment {
         
         
         //3
-        date_tv3.setText(DateManager.getDayOfWeek(4));
+        date_tv3.setText(DateManager.getDayOfWeek(day3.getDt(),4));
 
         Picasso.with(getActivity().getApplicationContext())
                 .load(day3.getWeather().get(0).getIconUrl())

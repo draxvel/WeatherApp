@@ -53,7 +53,7 @@ public class TomorrowFragment extends Fragment {
     public void setData(DayList dayList){
         Day day = dayList.getItems().get(1);
 
-        date_tv.setText(DateManager.getDayOfWeek(1));
+        date_tv.setText(DateManager.getDayOfWeek(day.getDt(),1));
 
         Picasso.with(getActivity().getApplicationContext())
                 .load(day.getWeather().get(0).getIconUrl())

@@ -55,7 +55,7 @@ public class TodayFragment extends Fragment{
 
 
     public void setData(Day day){
-        date_tv.setText(DateManager.getDayOfWeek(0));
+        date_tv.setText(DateManager.getDayOfWeek(day.getDt(),0));
 
         Picasso.with(getActivity().getApplicationContext())
                 .load(day.getWeather().get(0).getIconUrl())
